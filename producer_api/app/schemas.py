@@ -3,9 +3,9 @@ from datetime import datetime
 
 
 class SensorEvent(BaseModel):
-    event_id: str
-    equipament_id: str
+    event_id: int
+    equipment_id: str
     sensor_type: str
     sensor_value: float
-    unit: str
+    unit: int
     event_timestamp: datetime

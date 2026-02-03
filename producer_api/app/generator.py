@@ -19,7 +19,7 @@ def generate_event() -> SensorEvent:
 
     return SensorEvent(
         event_id=str(uuid.uuid4()),
-        equipament_id=f"F{random.randint(1, 100)}",
+        equipment_id=f"F{random.randint(1, 100)}",
         sensor_type=sensor_type,
         sensor_value=round(random.uniform(min_v, max_v), 2),
         unit=unit,
