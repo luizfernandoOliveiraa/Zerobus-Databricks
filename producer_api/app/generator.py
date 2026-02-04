@@ -1,3 +1,21 @@
+"""
+Módulo responsável por gerar eventos de sensores de equipamentos.
+
+Classes:
+    - SensorEvent: Modelo de dados para eventos de sensores.
+    Contém os atributos:
+        - event_id (str): Identificador único do evento.
+        - equipment_id (str): Identificador do equipamento associado ao evento.
+        - sensor_type (str): Tipo do sensor que gerou o evento.
+        - sensor_value (float): Valor medido pelo sensor.
+        - unit (str): Unidade de medida do valor do sensor.
+        - event_timestamp (datetime): Data e hora em que o evento ocorreu.
+Functions:
+    - generate_event() -> SensorEvent:
+        Gera um evento fictício de sensor com dados aleatórios.
+
+"""
+
 import uuid
 import random
 from faker import Faker
@@ -7,7 +25,7 @@ from .schemas import SensorEvent
 fake = Faker()
 
 SENSORS = {
-    "temperature": ("°C", 1000, 1500),
+    "temperature": ("°C", 1000, 1800),
     "pressure": ("bar", 20, 40),
     "vibration": ("mm/s", 0, 10),
 }

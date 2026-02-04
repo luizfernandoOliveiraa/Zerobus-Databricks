@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: zerobus_api
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DATABRICKS_SERVER_HOSTNAME=${DATABRICKS_SERVER_HOSTNAME}
+      - DATABRICKS_HTTP_PATH=${DATABRICKS_HTTP_PATH}
+      - DATABRICKS_TOKEN=${DATABRICKS_TOKEN}
+    command: uvicorn producer_api.app.main:app --host 0.0.0.0 --port 8000
+
+  post_dados:
+    build:
+      context: .
+      dockerfile: Dockerfile.post_dados
+    container_name: zerobus_post_dados
+    depends_on:
+      - api
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DATABRICKS_SERVER_HOSTNAME=${DATABRICKS_SERVER_HOSTNAME}
+      - DATABRICKS_HTTP_PATH=${DATABRICKS_HTTP_PATH}
+      - DATABRICKS_TOKEN=${DATABRICKS_TOKEN}
+    command: python post_dados.py
